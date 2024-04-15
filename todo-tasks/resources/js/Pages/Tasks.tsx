@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash,faPencilAlt, faPlay } from '@fortawesome/free-solid-svg-icons';
 import Modal from '@/Components/Modal';
 import TaskForm from '@/Components/TaskForm'
-import { useForm, router } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 import useRoute from '@/Hooks/useRoute';
 
 
@@ -18,10 +18,7 @@ export default function App({tasks}) {
   const [data, setData] = useState(tasks);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isCreate, setIsCreate] = useState(true);
-
   const route = useRoute();
-
-  console.log(tasks)
 
   const columns = useMemo(
     () => [
@@ -158,7 +155,7 @@ export default function App({tasks}) {
 });
 
   return (
-    <div>
+    <>
     <div className="flex items-center justify-between mb-4">
       <div className="flex items-center text-right">
         <Checkbox className="m-3" id="hide-closed-tasks-checkbox" checked={hideClosedTasks} onChange={handleHideClosedTasksChange} />
@@ -171,7 +168,7 @@ export default function App({tasks}) {
       </Button>
     </div>
     <MaterialReactTable table={table} />
-    <Modal isOpen={modalIsOpen} onClose={()=>{}}>
+    <Modal isOpen={modalIsOpen} onClose={()=>{setModalIsOpen(false)}}>
         <div className="flex justify-end">
           <button onClick={()=>setModalIsOpen(false)} className="text-red-500 hover:text-red-700 focus:outline-none font-medium text-3xl leading-6 tracking-wider">
             &times;
@@ -179,6 +176,6 @@ export default function App({tasks}) {
         </div>
             <TaskForm data={dataIn} isCreate={isCreate}></TaskForm>
     </Modal>
-  </div>
+  </>
   );
 }

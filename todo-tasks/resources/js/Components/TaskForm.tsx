@@ -26,7 +26,6 @@ const TaskForm = (props) => {
        },
        onSuccess: response => {
          console.log(response);
-         //setToggleNotification(!toggleNotification);
          router.visit(route('tasks.index'));
        },
        onFinish: () => {},
@@ -46,13 +45,12 @@ const TaskForm = (props) => {
           });
     }
   }
-  console.log(props.data)
   const [formData, setFormData] = useState(props.data);
  
  useEffect(() => {
   
      form.setData(formData)
-     console.log(formData);
+
  }, [formData]);
 
   const handleInputChange = (event) => {
@@ -117,6 +115,7 @@ const TaskForm = (props) => {
                     value={formData.priority_id}
                     onChange={handleInputChange}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-black leading-tight focus:outline-none focus:shadow-outline" required>
+              <option value="">Choose one...</option>
               <option value="1">Low</option>
               <option value="2">Medium</option>
               <option value="3">High</option>

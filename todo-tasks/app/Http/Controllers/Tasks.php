@@ -18,7 +18,7 @@ class Tasks extends Controller
     }
 
      /**
-   * Display a listing of the resource.
+   * Display a listing of the tasks.
    */
   public function index()
   {
@@ -29,47 +29,48 @@ class Tasks extends Controller
   }
 
   /**
-   * Store a newly created resource in storage.
+   * Store a newly created task in storage.
    */
   public function store(Request $request)
   {
+    /* a simple bakend validation */
     $request->validate([
       'title' => 'required|string|max:255',
-
+      'status' => 'required|string|max:255',
+      'deadline' => 'required|date',
       'category_id' => 'required|numeric',
       'priority_id' => 'required|numeric',
     ]);
 
     $this->taskRepository->createTask($request);
-
-    return $this->index();
-
   }
 
   /**
-     * Update the specified resource in storage.
+     * Update the specified task in storage.
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+        'title' => 'required|string|max:255',
+        'status' => 'required|string|max:255',
+        'deadline' => 'required|date',
+        'category_id' => 'required|numeric',
+        'priority_id' => 'required|numeric',
+        ]);
         $this->taskRepository->updateTask($id, $request);
-       
-        return $this->index();
     }
 
     /**
-     * Set the specified resource with status in progress in storage.
+     * Set the specified task with status in progress in storage.
      */
     public function inProgress($id)
     {
-        //Category::delete(['id'=>$request->id]);
             $this->taskRepository->setStatusProgress($id);
-
-        //$res = Task::where('id', $id)->update(["status"=>"In progress..."]);
     }
 
 
    /**
-     * Remove the specified resource from storage.
+     * Remove the specified task from storage.
      */
     public function destroy($id)
     {    

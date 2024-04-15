@@ -48,10 +48,6 @@ class TaskRepository implements TaskRepositoryInterface
         Task::destroy($taskId);
     }
 
-    
-
-    
-
     public function getFulfilledOrders() 
     {
         return Order::where('is_fulfilled', true);

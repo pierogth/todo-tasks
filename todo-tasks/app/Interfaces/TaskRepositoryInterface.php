@@ -12,5 +12,4 @@ interface TaskRepositoryInterface
     public function updateTask($taskId, Request $request);
     public function setStatusProgress($orderId);
     public function deleteTask($orderId);
-    
 }
