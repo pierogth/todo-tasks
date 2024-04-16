@@ -25,7 +25,6 @@ export default function App({tasks}) {
       {
         accessorKey: 'title', //simple recommended way to define a column
         header: 'Title',
-        muiTableHeadCellProps: { sx: { color: 'green' } }, //optional custom props
         Cell: ({ cell }) => <span>{cell.getValue()}</span>, //optional custom cell render
       },
       {
@@ -174,7 +173,7 @@ export default function App({tasks}) {
             &times;
           </button>
         </div>
-            <TaskForm data={dataIn} isCreate={isCreate}></TaskForm>
+        <TaskForm data={dataIn} isCreate={isCreate}></TaskForm>
     </Modal>
   </>
   );

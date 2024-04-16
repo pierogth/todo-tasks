@@ -34,7 +34,7 @@ class TaskSeeder extends Seeder
         ]);
 
         DB::table('tasks')->insert([
-            'title' => 'Pulire giardino',
+            'title' => 'Pulire pavimento',
             'description' => '',
             'deadline' => '2024-05-05',
             'status' => 'Open',

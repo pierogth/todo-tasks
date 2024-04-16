@@ -16,14 +16,14 @@ class TaskRepository implements TaskRepositoryInterface
 
     public function createTask(Request $request) 
     {
-            $task = new Task();
-            $task->title = $request->title;
-            $task->description = $request->description;
-            $task->deadline = $request->deadline;
-            $task->status = $request->status;
-            $task->category_id = $request->category_id;
-            $task->priority_id = $request->priority_id;
-            $task->save();
+        $task = new Task();
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->deadline = $request->deadline;
+        $task->status = $request->status;
+        $task->category_id = $request->category_id;
+        $task->priority_id = $request->priority_id;
+        $task->save();
     }
 
     public function updateTask($taskId, Request $request) 
@@ -48,8 +48,4 @@ class TaskRepository implements TaskRepositoryInterface
         Task::destroy($taskId);
     }
 
-    public function getFulfilledOrders() 
-    {
-        return Order::where('is_fulfilled', true);
-    }
 }

@@ -10,6 +10,9 @@ use Inertia\Inertia;
 
 class Tasks extends Controller
 {
+  /**************************
+   * Using repository pattern
+   **************************/
     private TaskRepositoryInterface $taskRepository;
 
     public function __construct(TaskRepositoryInterface $taskRepository) 
@@ -17,9 +20,9 @@ class Tasks extends Controller
         $this->taskRepository = $taskRepository;
     }
 
-     /**
+  /**********************************
    * Display a listing of the tasks.
-   */
+   **********************************/
   public function index()
   {
     return Inertia::render('Tasks', [
@@ -28,9 +31,9 @@ class Tasks extends Controller
    
   }
 
-  /**
+  /*******************************************
    * Store a newly created task in storage.
-   */
+   ******************************************/
   public function store(Request $request)
   {
     /* a simple bakend validation */
@@ -45,9 +48,9 @@ class Tasks extends Controller
     $this->taskRepository->createTask($request);
   }
 
-  /**
+    /******************************************
      * Update the specified task in storage.
-     */
+     ******************************************/
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -60,18 +63,18 @@ class Tasks extends Controller
         $this->taskRepository->updateTask($id, $request);
     }
 
-    /**
+    /*************************************************************
      * Set the specified task with status in progress in storage.
-     */
+     *************************************************************/
     public function inProgress($id)
     {
             $this->taskRepository->setStatusProgress($id);
     }
 
 
-   /**
+   /*******************************************
      * Remove the specified task from storage.
-     */
+     ******************************************/
     public function destroy($id)
     {    
         $this->taskRepository->deleteTask($id);
