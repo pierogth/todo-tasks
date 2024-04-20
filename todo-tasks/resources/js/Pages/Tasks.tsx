@@ -15,10 +15,14 @@ import useRoute from '@/Hooks/useRoute';
 
 
 export default function App({tasks}) {
-  const [data, setData] = useState(tasks);
+  const [data, setData] = useState([...tasks]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isCreate, setIsCreate] = useState(true);
   const route = useRoute();
+
+  const deleteTask = (id) =>{
+    setData([...data.filter((task)=>{return task.id!==id})]) 
+  }
 
   const columns = useMemo(
     () => [
@@ -77,7 +81,7 @@ export default function App({tasks}) {
                                                                                                               let text = "Sicuro di voler cancellare il Task?";
                                                                                                               if (confirm(text) == true) {
                                                                                                                 router.delete(route('tasks.delete',row.id));
-                                                                                                                setData(tasks.filter(task=>{return task.id!=row.id})) 
+                                                                                                                deleteTask(row.id)
                                                                                                               } else {
                                                                                                                 //text = "You canceled!";
                                                                                                               }}} />
@@ -96,7 +100,7 @@ export default function App({tasks}) {
         header: 'Actions',
       },
     ],
-    [],
+    [data],
   );
 
   //optionally, you can manage any/all of the table state yourself

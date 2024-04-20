@@ -78,5 +78,5 @@ class Tasks extends Controller
     public function destroy($id)
     {    
         $this->taskRepository->deleteTask($id);
-    }
+      }
 }
