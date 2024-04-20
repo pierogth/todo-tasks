@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Run the default command
-docker-php-entrypoint "$@"
+# Build assets
+npm run build
 
 # Run the migration and seeding
 php artisan migrate:fresh --seed
